@@ -106,7 +106,22 @@ class Builder {
 
         return $this->containsFile();
     }
-
+    
+    /**
+    * Add array of files to request
+    *
+    * @param  array $arr
+    *
+    * @return Builder
+    */
+    public function withFileArray($arr) {
+        $res = $this;
+        foreach ($arr as $key => $item) {
+            $res = $res->withFile($key, $item['fileName'], $item['mimeType'] ?? '', $item['postFileName'] ?? '');
+        }
+        return $res;
+    }
+    
     /**
      * Allow for redirects in the request
      *
